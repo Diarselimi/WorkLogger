@@ -14,4 +14,10 @@ class WorkLog
 	
 	public String getTask(){ return this.task; }
 	public int getDuration() { return this.duration; }
+
+	public String[] valuesToArray()
+	{
+		String[] result = {this.task, Integer.toString(this.duration)};
+		return result;
+	}
 }
