@@ -10,7 +10,7 @@ class CsvWriter
 	public void addColumn(String column)
 	{
 		if(column != null){
-			this.row += column+';';
+			this.row += column+',';
 		}
 	}
 

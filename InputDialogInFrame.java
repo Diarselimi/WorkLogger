@@ -52,7 +52,7 @@ class InputDialogInFrame extends JFrame
 			int counter = 3;
 
 			WorkLog worklog = new WorkLog(task, minutesToWait);		
-			System.out.printf("You have spent %d minutes on %s", 
+			System.out.printf("You have spent %d minutes on %s \n",
 			worklog.getDuration(),
 			worklog.getTask());	
 			Storage storage = new Storage(worklog);
