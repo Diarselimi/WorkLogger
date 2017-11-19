@@ -1,3 +1,6 @@
+import java.util.Date;
+import java.text.*;
+
 /**
 * This class is for getting the data from the promter;
 */
@@ -17,7 +20,9 @@ class WorkLog
 
 	public String[] valuesToArray()
 	{
-		String[] result = {this.task, Integer.toString(this.duration)};
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		String[] result = {this.task, Integer.toString(this.duration),dateFormat.format(date)};
 		return result;
 	}
 }

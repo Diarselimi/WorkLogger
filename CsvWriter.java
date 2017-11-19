@@ -1,21 +1,33 @@
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 
 class CsvWriter
 {
-	private String row;
+	private String row = "";
+	private String filename = "./storage/data.csv";
 
 	public void addColumn(String column)
 	{
-		this.row += ';'+column;
+		if(column != null){
+			this.row += column+';';
+		}
 	}
 
 	public boolean write()
 	{
-		FileWriter fr = new FileWriter("./storage/data.csv"); // After '.' write
-		// your file extention (".txt" in this case)
-		fr.write(this.row); // Warning: this will REPLACE your old file content!
-		fr.close();
+		this.row += '\n';
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(this.filename, true))) {
+			bw.write(this.row);
+
+			// no need to close it.
+			//bw.close();
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		}
+		return true;
 	}
 }
