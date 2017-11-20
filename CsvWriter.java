@@ -16,7 +16,7 @@ class CsvWriter
 
 	public boolean write()
 	{
-		this.row += '\n';
+		this.row += "\n\r";
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(this.filename, true))) {
 			bw.write(this.row);
 
