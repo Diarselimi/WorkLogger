@@ -9,9 +9,9 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import javax.swing.JFrame;
 
-class InputDialogInFrame extends JFrame
+class MainPanel extends JFrame
 {
-	public InputDialogInFrame() {
+	public MainPanel() {
 
 		getContentPane().setBackground(Color.DARK_GRAY);
 		setTitle("Input Dialog in Frame");
@@ -33,7 +33,7 @@ class InputDialogInFrame extends JFrame
 	public static void main(String[] args)
 	{
 		if (args.length == 0 || Integer.parseInt(args[0]) <= Calendar.getInstance().get(Calendar.HOUR_OF_DAY)) {
-			System.out.println("Usage: java Main <Finish hour 24h format>");
+			System.out.println("Usage: java MainPanel <Finish hour 24h format>");
 			System.err.println("The end hour is required");
 			System.err.println("The finish hour should be greater than current hour.");
 			System.exit(1);
@@ -47,7 +47,7 @@ class InputDialogInFrame extends JFrame
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
-			InputDialogInFrame frame = new InputDialogInFrame();
+			MainPanel frame = new MainPanel();
 			frame.setAlwaysOnTop(true);
 			String task = JOptionPane.showInputDialog(frame, "Enter the Task code:");
 
