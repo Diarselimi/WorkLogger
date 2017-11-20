@@ -1,25 +1,29 @@
 
 import entity.WorkLog;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
+import java.awt.*;
 import java.util.Calendar;
 
-import java.awt.Color;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
-import javax.swing.JFrame;
 
 class MainPanel extends JFrame
 {
+	private String currentTask = null;
+	private JButton button;
 	public MainPanel() {
 
-		getContentPane().setBackground(Color.DARK_GRAY);
+		button = new JButton("Log It");
+		JTextField jtextfield = new JTextField("EX-123 : Some description");
+
 		setTitle("Input Dialog in Frame");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		setResizable(false);
-		setSize(400, 300);
-		getContentPane().setLayout(null);
+
+		setSize(400, 200);
+		getContentPane().setLayout(new FlowLayout());
 
 	}
 
@@ -69,5 +73,5 @@ class MainPanel extends JFrame
 			frame.closeIt();
 		} while ( Integer.parseInt(args[0]) > Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
 	}
-	
 }
+
