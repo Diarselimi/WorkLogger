@@ -13,7 +13,7 @@ import java.util.List;
 */
 public class WorkLog
 {
-	public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm:SS";
+	public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
 	private Date createdAt;
 	private String task;
