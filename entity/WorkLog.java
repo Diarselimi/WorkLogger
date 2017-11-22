@@ -43,7 +43,14 @@ public class WorkLog
 	}
 
 	public void setTask(String task) {
-		this.task = task;
+
+		if(task.contains(":")) {
+			this.setTask(task.split(":")[0]);
+			this.setDescription(task.split(":")[1]);
+		} else {
+			this.task = task;
+		}
+
 	}
 
 	public String getDescription() {
@@ -75,6 +82,16 @@ public class WorkLog
 				Long.toString(created.getDiff(this.finishedAt)),
 				created.toFormat(DATE_FORMAT), finished.toFormat(DATE_FORMAT)};
 		return result;
+	}
+
+	public void setValuedFromString(String row) {
+		DateService date = new DateService(new Date());
+
+		this.task = row.split(",")[0];
+		this.description = row.split(",")[1];
+		this.duration = Integer.parseInt(row.split(",")[2]);
+		this.setCreatedAt(date.fromFormat(row.split(",")[3], DATE_FORMAT));
+		this.finishedAt = date.fromFormat(row.split(",")[4], DATE_FORMAT);
 	}
 
 	/**

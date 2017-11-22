@@ -1,33 +1,41 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
-class CsvWriter
-{
-	private String row = "";
-	private String filename = "./storage/data.csv";
+class CsvWriter {
+    private String row = "";
+    private String filename = "./storage/data.csv";
 
-	public void addColumn(String column)
-	{
-		if(column != null){
-			this.row += column+',';
-		}
-	}
+    public void addColumn(String column) {
+        if (column != null) {
+            this.row += column + ',';
+        }
+    }
 
-	public boolean write()
-	{
-		this.row += "\n\r";
-		try (BufferedWriter bw = new BufferedWriter(new FileWriter(this.filename, true))) {
-			bw.write(this.row);
+    public String getLastRow() {
+        String lastLine = "";
+        String line = null;
+        try (BufferedReader br = new BufferedReader(new FileReader(this.filename))) {
+            while ((line = br.readLine()) != null) {
+                lastLine = line;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return lastLine;
+    }
 
-			// no need to close it.
-			//bw.close();
+    public boolean write() {
+        this.row += "\n";
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(this.filename, true))) {
+            bw.write(this.row);
 
-		} catch (IOException e) {
+            // no need to close it.
+            //bw.close();
 
-			e.printStackTrace();
+        } catch (IOException e) {
 
-		}
-		return true;
-	}
+            e.printStackTrace();
+
+        }
+        return true;
+    }
 }
