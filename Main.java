@@ -3,7 +3,6 @@ import entity.WorkLog;
 import javafx.stage.WindowEvent;
 
 import javax.swing.*;
-import java.awt.event.WindowAdapter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -16,7 +15,6 @@ class Main
 	public static void main(String[] args)
 	{
 		List<Panel> panels = new ArrayList<Panel>();
-		Date startedDate = new Date();
 
 		saveWorklogForStartingDay(new WorkLog());
 		if (args.length == 0 || Integer.parseInt(args[0]) <= Calendar.getInstance().get(Calendar.HOUR_OF_DAY)) {
