@@ -36,6 +36,7 @@ class MainPanel extends JFrame
 
 	public static void main(String[] args)
 	{
+	    Panel p = new Panel(400,200);
 		if (args.length == 0 || Integer.parseInt(args[0]) <= Calendar.getInstance().get(Calendar.HOUR_OF_DAY)) {
 			System.out.println("Usage: java MainPanel <Finish hour 24h format>");
 			System.err.println("The end hour is required");
