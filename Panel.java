@@ -1,9 +1,8 @@
 import entity.WorkLog;
-import javafx.event.ActionEvent;
+import service.DateService;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.util.Date;
 
 public class Panel extends JFrame {
@@ -46,14 +45,19 @@ public class Panel extends JFrame {
             WorkLog previousWlog = new WorkLog();
             previousWlog.setValuedFromString(csv.getLastRow());
 
-            System.out.println(previousWlog.getTask());
             workLog.setCreatedAt(previousWlog.getFinishedAt());
+            DateService ds = new DateService(previousWlog.getFinishedAt());
+            workLog.setDuration((int) ds.getDiff(workLog.getFinishedAt()));
 
             Storage store = new Storage(workLog);
             store.save();
 
             getContentPane().setVisible(false);
             dispose();
+
+            Request request = new Request(
+                    "https://jaywalker.atlassian.net/rest/api/2/issue/" + workLog.getTask() + "/worklog",
+                    workLog);
         });
     }
 

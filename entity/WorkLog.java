@@ -80,7 +80,8 @@ public class WorkLog
 
 		String[] result = {this.task, this.description,
 				Long.toString(created.getDiff(this.finishedAt)),
-				created.toFormat(DATE_FORMAT), finished.toFormat(DATE_FORMAT)};
+				created.toFormat(DATE_FORMAT),
+				finished.toFormat(DATE_FORMAT)};
 		return result;
 	}
 

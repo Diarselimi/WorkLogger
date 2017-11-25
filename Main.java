@@ -1,6 +1,5 @@
 
 import entity.WorkLog;
-import javafx.stage.WindowEvent;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -42,6 +41,8 @@ class Main
 			frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
 			panels.add(0, frame);
+
+
 
 		} while ( Integer.parseInt(args[0]) > Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
 	}
