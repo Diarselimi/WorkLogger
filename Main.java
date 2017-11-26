@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 class Main
 {
@@ -22,15 +21,12 @@ class Main
 			System.err.println("The finish hour should be greater than current hour.");
 			System.exit(1);
 		}
+		Promter promter = new Promter();
+		int minutesToWait = (args.length == 2)? Integer.parseInt(args[1]): 30;
 		do {
-		    WorkLog wlog = new WorkLog();
+			WorkLog wlog = new WorkLog();
 
-			int minutesToWait = (args.length == 2)? Integer.parseInt(args[1]): 30;
-			try {
-				TimeUnit.MINUTES.sleep(minutesToWait);
-			} catch (Exception e) {
-				System.out.println(e.getMessage());
-			}
+			promter.wait(minutesToWait);
 
 			for (Panel panel : panels) {
 				panel.closeIt();

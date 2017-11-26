@@ -1,0 +1,16 @@
+<project name="worklog" default="run">
+    <description>
+        simple worklog app
+    </description>
+    <!-- set global properties for this build -->
+    <property name="build" location="build"/>
+    <property name="arg0" location="24"/>
+    <property name="arg1" location="1"/>
+    <target name="run">
+        <exec executable="Main.class">
+            <arg value="${arg0}"/>
+            <arg value="${arg1}"/>
+        </exec>
+    </target>
+
+</project>

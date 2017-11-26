@@ -7,7 +7,7 @@ import service.DateService;
 import java.util.Base64;
 
 public class Request {
-    private String encoding = Base64.getEncoder().encodeToString(("username:password").getBytes());
+    private String encoding = Base64.getEncoder().encodeToString(("diarselimi92:@bitbucket#diar$").getBytes());
 
     public Request(String uri, WorkLog workLog)
     {
