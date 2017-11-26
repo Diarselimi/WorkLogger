@@ -1,3 +1,4 @@
+import config.PropertyLoader;
 import entity.WorkLog;
 import service.DateService;
 
@@ -37,6 +38,9 @@ public class Panel extends JFrame {
         setSize(width, height);
         getContentPane().setLayout(pane);
 
+        this.setAlwaysOnTop(true);
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+
         button.addActionListener(e -> {
             workLog.setTask(jtextfield.getText());
             workLog.setFinishedAt(new Date());
@@ -49,15 +53,17 @@ public class Panel extends JFrame {
             DateService ds = new DateService(previousWlog.getFinishedAt());
             workLog.setDuration((int) ds.getDiff(workLog.getFinishedAt()));
 
-            Storage store = new Storage(workLog);
+            Storage store = new CsvWriter();
+            store.addColumns(workLog.valuesToArray());
             store.save();
 
             getContentPane().setVisible(false);
             dispose();
 
             Request request = new Request(
-                    "https://jaywalker.atlassian.net/rest/api/2/issue/" + workLog.getTask() + "/worklog",
+                    PropertyLoader.getProp("api_url") + workLog.getTask() + "/worklog",
                     workLog);
+
         });
     }
 

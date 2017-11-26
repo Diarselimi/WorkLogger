@@ -1,25 +1,6 @@
-import entity.WorkLog;
-
-class Storage
+interface Storage
 {
-	private WorkLog workLog;
-	private CsvWriter csvWriter;
+	public void addColumns(String[] columns);
+	public boolean save();
 
-	public Storage(WorkLog workLog)
-	{
-		this.workLog = workLog;
-		this.csvWriter = new CsvWriter();
-
-		for (String column: workLog.valuesToArray())
-		{
-			this.csvWriter.addColumn(column);
-		}
-
-	}
-
-	public boolean save()
-	{
-		this.csvWriter.write();
-		return true;
-	}
 }
