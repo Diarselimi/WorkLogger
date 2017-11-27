@@ -60,18 +60,23 @@ public class Panel extends JFrame {
             getContentPane().setVisible(false);
             dispose();
 
-            Request request = new Request(
-                    PropertyLoader.getProp("api_url") + workLog.getTask() + "/worklog",
-                    workLog);
+            if( workLog.getTask().contains("-") ) {
+
+                Request request = new Request(
+                        PropertyLoader.getProp("api_url") + workLog.getTask() + "/worklog",
+                        workLog);
+            }
 
         });
     }
 
     private JPanel latestLogsInfo() {
+        Storage csv = new CsvWriter();
+        String[] last = csv.lastSaved();
         JPanel pane = new JPanel(new FlowLayout());
-        JLabel task = new JLabel("Last task: ST-123");
-        JLabel description = new JLabel("Description: asdasdasdas");
-        JLabel timeSpent = new JLabel("Time: 45m");
+        JLabel task = new JLabel("Last task: "+last[0]);
+        JLabel description = new JLabel("Description: "+last[1]);
+        JLabel timeSpent = new JLabel("Duration: "+last[2]+"m");
 
         pane.add(task);
         pane.add(description);

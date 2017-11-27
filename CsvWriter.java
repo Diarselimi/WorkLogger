@@ -31,6 +31,11 @@ class CsvWriter implements Storage {
         return lastLine;
     }
 
+    @Override
+    public final String[] lastSaved() {
+        return this.getLastRow().split(",");
+    }
+
     public boolean save() {
         this.row += "\n";
 
